@@ -1,0 +1,408 @@
+alu0101037653@cc2327:~$ ssh -p 2200 alu0101037653@exthost2.etsii.ull.es
+alu0101037653@exthost2.etsii.ull.es's password: 
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-134-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+Last login: Wed Nov  7 13:02:00 2018 from 10.209.32.80
+alu0101037653@4c688d36742f:~$ sqlplus
+
+SQL*Plus: Release 12.2.0.1.0 Production on Wed Nov 21 13:03:32 2018
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+Enter password: 
+Last Successful login time: Wed Nov 14 2018 13:07:17 +00:00
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+SQL> SPOOL PRACT06
+SQL> SELECT SYSDATE
+  2  FROM DUAL;
+
+SYSDATE
+---------
+21-NOV-18
+
+SQL> SELECT TO_CHAR(SYSDATE, 'HH24:Mi:SS') 
+  2  FROM DUAL;
+
+TO_CHAR(
+--------
+13:06:02
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DDD') 
+  2  FROM DUAL;
+
+TO_
+---
+325
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DD') 
+  2  FROM DUAL;
+
+TO
+--
+21
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DAY') 
+  2  FROM DUAL;
+
+TO_CHAR(SYSDATE,'DAY')
+------------------------------------
+WEDNESDAY
+
+SQL> SELECT TO_CHAR(SYSDATE, 'D') 
+  2  FROM DUAL;
+
+T
+-
+4
+
+SQL> SELECT TO_CHAR(SYSDATE, 'WW') 
+  2  FROM DUAL;
+
+TO
+--
+47
+
+SQL> SELECT TO_CHAR(SYSDATE, 'W') 
+  2  FROM DUAL;
+
+T
+-
+3
+
+SQL> SELECT TO_CHAR(SYSDATE, 'Q') 
+  2  FROM DUAL;
+
+T
+-
+4
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DY') 
+  2  FROM DUAL;
+
+TO_CHAR(SYSD
+------------
+WED
+
+SQL> SELECT TO_CHAR(SYSTIMESTAMP, 'HH24:Mi:SS FF3') 
+  2  FROM DUAL;
+
+TO_CHAR(SYST
+------------
+13:12:49 344
+
+SQL> SELECT TO_CHAR(SYSTIMESTAMP, 'HH24:Mi:SS.FF3') 
+  2  FROM DUAL;
+
+TO_CHAR(SYST
+------------
+13:13:02.272
+
+SQL> SELECT EXTRACT('YEAR FROM FI)
+  2  FROM PLAN_DOCENTE;
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> SELECT EXTRACT('YEAR FROM FI')
+  2  FROM PLAN_DOCENTE;
+SELECT EXTRACT('YEAR FROM FI')
+       *
+ERROR at line 1:
+ORA-00938: not enough arguments for function
+
+
+SQL> SELECT EXTRACT(YEAR FROM FI)
+  2  FROM PLAN_DOCENTE;
+
+EXTRACT(YEARFROMFI)
+-------------------
+	       2005
+	       2008
+	       2009
+	       2007
+	       2009
+	       2008
+	       2006
+	       2009
+	       2009
+	       2008
+	       2009
+
+EXTRACT(YEARFROMFI)
+-------------------
+	       2011
+	       2008
+	       2010
+	       2010
+	       2008
+	       2010
+	       2009
+	       2010
+
+19 rows selected.
+
+SQL> SELECT TO_CHAR(FI, 'YYYY')
+  2  FROM DUAL;
+SELECT TO_CHAR(FI, 'YYYY')
+               *
+ERROR at line 1:
+ORA-00904: "FI": invalid identifier
+
+
+SQL> SELECT TO_CHAR(FI, 'YYYY')
+  2  FROM PLAN_DOCENTE;
+
+TO_C
+----
+2005
+2008
+2009
+2007
+2009
+2008
+2006
+2009
+2009
+2008
+2009
+
+TO_C
+----
+2011
+2008
+2010
+2010
+2008
+2010
+2009
+2010
+
+19 rows selected.
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DD-MM-YY')
+  2  FROM DUAL;
+
+TO_CHAR(
+--------
+21-11-18
+
+SQL> SELECT TO_CHAR(SYSDATE, 'HH24:Mi:SS')
+  2  FROM DUAL;
+
+TO_CHAR(
+--------
+13:20:00
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DAY-DD-MONTH-YY')
+  2  FROM DUAL;
+
+TO_CHAR(SYSDATE,'DAY-DD-MONTH-YY')
+-------------------------------------------------------------------------------
+WEDNESDAY-21-NOVEMBER -18
+
+SQL> SELECT TO_CHAR(SYSDATE, 'HH24:Mi:SS')
+  2  FROM DUAL;
+
+TO_CHAR(
+--------
+13:23:50
+
+SQL> SELECT TO_CHAR(SYSDATE, 'DD')
+  2  FROM PLAN_DOCENTE
+  3  WHERE CAS='8';
+
+TO
+--
+21
+21
+21
+
+SQL> SELECT SYSDATE=FI
+  2  FROM PLAN_DOCENTE
+  3  WHRE CAS='8' AND DNI='8888';
+SELECT SYSDATE=FI
+              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT SYSDATE=FI
+  2  FROM PLAN_DOCENTE
+  3  WHRE CAS=11 AND DNI=8888;
+SELECT SYSDATE=FI
+              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT SYSDATE-FI
+  2  FROM PLAN_DOCENTE
+  3  WHRE CAS=11 AND DNI=8888;
+WHRE CAS=11 AND DNI=8888
+     *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SELECT SYSDATE-FI
+  2  FROM PLAN_DOCENTE
+  3  WHERE CAS=11 AND DNI=8888;
+
+SYSDATE-FI
+----------
+3368.56284
+
+SQL> SELECT P
+  2  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  3  WHERE SYSDATE-FI > 365 AND FF IS NULL
+  4  UNION
+  5  SELECT P
+  6  FROM PROFESOR NATURAL JOIN PLAN_DOCENTE
+  7  WHERE FF-FI > 365 AND FF IS NOT NULL;
+
+P
+------------------------------------------------------------
+ANGELA
+CARLOS
+CARMEN
+DAVID
+FRANCISCO
+IVAN
+JOSE MANUEL
+JUAN
+MARIA
+MARIO
+PEDRO
+
+P
+------------------------------------------------------------
+SOLEDAD
+
+12 rows selected.
+
+SQL> SELECT COUNT(DNI)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR
+  3  WHERE CD=2;
+
+COUNT(DNI)
+----------
+	 1
+
+SQL> SELECT COUNT(DNI)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR
+  3  WHERE CD;
+WHERE CD
+       *
+ERROR at line 3:
+ORA-00920: invalid relational operator
+
+
+SQL> SELECT D,COUNT(DNI)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR
+  3  GROUP BY D;
+
+D							     COUNT(DNI)
+------------------------------------------------------------ ----------
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION		      7
+ASTROFISICA							      1
+ANALISIS MATEMATICO						      3
+MATEMATICA FUNDAMENTAL						      1
+
+SQL> SELECT D,COUNT(DNI)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR
+  3  GROUP BY D;
+
+D							     COUNT(DNI)
+------------------------------------------------------------ ----------
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION		      7
+ASTROFISICA							      1
+ANALISIS MATEMATICO						      3
+MATEMATICA FUNDAMENTAL						      1
+
+SQL> SELECT D,COUNT(DNI)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN PROFESOR
+  3  GROUP BY D
+  4  ORDER BY D;
+
+D							     COUNT(DNI)
+------------------------------------------------------------ ----------
+ANALISIS MATEMATICO						      3
+ASTROFISICA							      1
+ESTADISTICA, INVESTIGACION OPERATIVA Y COMPUTACION		      7
+MATEMATICA FUNDAMENTAL						      1
+
+SQL> SELECT COUNT(CD)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA
+  3  WHERE CD=3;
+
+ COUNT(CD)
+----------
+	 3
+
+SQL> SELECT COUNT(UNIQUE T)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN ASIGNATURA
+  3  WHERE D LIKE 'ESTADISTICA%'
+  4  GROUP BY CD;
+
+COUNT(UNIQUET)
+--------------
+	     2
+
+SQL> SELECT COUNT(P)
+  2  FROM AREA NATURAL JOIN PROFESOR
+  3  WHERE AR LIKE '%A';
+
+  COUNT(P)
+----------
+	 6
+
+SQL> SELECT COUNT(DNI)
+  2  FROM AREA NATURAL JOIN PROFESOR
+  3  WHERE AR LIKE '%A';
+
+COUNT(DNI)
+----------
+	 6
+
+SQL> SELECT COUNT(DNI)
+  2  FROM AREA NATURAL JOIN PROFESOR
+  3  WHERE AR LIKE 'A%';
+
+COUNT(DNI)
+----------
+	 3
+
+SQL> SELECT COUNT(UNIQUE T)
+  2  FROM DEPARTAMENTO NATURAL JOIN AREA NATURAL JOIN ASIGNATURA
+  3  GROUP BY CD;
+
+COUNT(UNIQUET)
+--------------
+	     2
+	     1
+	     1
+	     2
+
+SQL> COMMIT WORK
+  2  ;
+
+Commit complete.
+
+SQL> SPOOL OFF
+SQL> exit
+Disconnected from Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+alu0101037653@4c688d36742f:~$ 

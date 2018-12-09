@@ -403,6 +403,4 @@ SQL> COMMIT WORK
 Commit complete.
 
 SQL> SPOOL OFF
-SQL> exit
-Disconnected from Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
-alu0101037653@4c688d36742f:~$ 
+
